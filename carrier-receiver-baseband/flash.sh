@@ -1,7 +1,7 @@
-picotool reboot -uf;
+picotool reboot -uf; # reboot into BOOTSEL mode
 sleep 5;
-picotool load build/carrier_receiver_baseband.elf;
+picotool load build/carrier_receiver_baseband.elf; # Load the elf file
 picotool reboot;
 sleep 2;
-picocom -b 115200 /insert/your/path;
+picocom -b 115200 /insert/your/path; # Connect to see the output
 
