@@ -11,6 +11,14 @@ The device is compatible with the following driver: [CP210x USB to UART Bridge V
 ```
  pip install pyserial
 ```
+
+<br> Therea are conflicting names for the serial libary. You should have a python3 virtual environment:
+```
+python3 -m venv .venv
+source ./venv/bin/activate
+```
+
+
 <br> Find the connected device port under /dev. 
 
 Firefly should be connected to a usb port. The port name that appears
