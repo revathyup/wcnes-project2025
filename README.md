@@ -24,3 +24,7 @@ A number of pre-requisites are needed to work with this repo:
 Raspberry Pi Pico SDK, cmake and arm-none-eabi-gcc have to be installed for building and flashing the application code.
 <br>Please follow the installation guidance in [Getting started with Rasberry Pi Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf).
 <br>Using Visual Studio Code is recommended.
+
+## Usefull Commands
+
+mkdir build; cd build; cmake ../; make; cd ../
