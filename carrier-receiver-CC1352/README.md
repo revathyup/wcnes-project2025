@@ -11,6 +11,8 @@ In the control panel, choose `Continuous TX`, `Unmodulated`, `Frequency`, `Trans
 <br>Then click `Start`.
 
 ## Packet Receiver
+Make sure that the synchronization word is the same as the one set in the packet_generation.c file.
+
 In the control panel, choose `2.4G frequency band`, `Packet RX`
 <br>`Base Freqeuncy`: $f_{R}$
 <br>`Data Rate`: $R_{b}$
