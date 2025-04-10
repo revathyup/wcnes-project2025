@@ -75,10 +75,14 @@ void generate_data(uint8_t *buffer, uint8_t length, bool include_index) {
         buffer[1] = (uint8_t) (file_position & 0x00FF);
         data_start = 2;
     }
-    for (uint8_t i=data_start; i < length; i=i+2) {
+    for (uint8_t i=data_start; i < length; i=i+6) {
         uint16_t sample = generate_sample();
         buffer[i]   = (uint8_t) (sample >> 8);
         buffer[i+1] = (uint8_t) (sample & 0x00FF);
+        buffer[i+2]   = (uint8_t) (sample >> 8);
+        buffer[i+3] = (uint8_t) (sample & 0x00FF);
+        buffer[i+4]   = (uint8_t) (sample >> 8);
+        buffer[i+5] = (uint8_t) (sample & 0x00FF);
     }
 }
 
