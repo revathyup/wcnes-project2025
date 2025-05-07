@@ -1,0 +1,51 @@
+RP2040 -
+
+1. Dual Cortex-M0+ Cores-Two identical M0+ CPUs running at up to 133 MHz
+ - 32 bit risc architecture (thumb 2 instruction set- Thumb-2 instruction set
+Thumb-2 is an enhancement to the 16-bit Thumb instruction set. It adds 32-bit instructions that can be freely intermixed with 16-bit instructions in a program. The additional 32-bit instructions enable Thumb-2 to cover the functionality of the ARM instruction set. The 32-bit instructions enable Thumb-2 to combine the code density of earlier versions of Thumb, with performance of the ARM instruction.
+
+The most important difference between the Thumb-2 instruction set and the ARM instruction set is that most 32-bit Thumb instructions are unconditional, whereas most ARM instructions can be conditional. Thumb-2 introduces a conditional execution instruction, IT, that is a logical if-then-else function that you can apply to following instructions to make them conditional.
+
+Thumb-2 instructions are accessible as were Thumb instructions when the processor is in Thumb state, that is, the T bit in the CPSR is 1 and the J bit in the CPSR is 0.
+
+In addition to the 32-bit Thumb instructions, there are several 16-bit Thumb instructions and a few 32-bit ARM instructions, introduced as part of the Thumb-2 architecture.)
+
+- Single-cycle I/O (SIO) access for fast GPIO operations.
+- Inter-core communication via mailbox FIFOs and hardware spinlocks.
+- Independent AHB-Lite bus interfaces for parallel memory/peripheral access
+
+2. Code may be executed directly from external memory through a dedicated SPI, DSPI or QSPI interface. A small cache
+improves performance for typical applications.
+
+3. you can debug the microcontroller using the SWD (Serial Wire Debug) interface.
+
+Internal SRAM is arranged in banks which can contain code or data and is accessed via dedicated AHB bus fabric
+connections, allowing bus masters to access separate bus slaves without being stalled.
+
+DMA bus masters are available to offload repetitive data transfer tasks from the processors.
+GPIO pins can be driven directly, or from a variety of dedicated logic functions
+
+. The main AHB-Lite crossbar routes addresses and data between
+its 4 upstream ports and 10 downstream ports: up to four bus transfers can take place each cycle. All data paths are 32
+bits wide. Memory devices have dedicated ports on the main crossbar, to satisfy their high bandwidth requirements. Highbandwidth AHB-Lite peripherals have a shared port on the crossbar, and an APB bridge provides bus access to system
+control registers and lower-bandwidth peripherals
+
+When there are multiple simultaneous accesses to same arbiter, any requests from high-priority masters (priority level 1)
+will be considered before any requests from low-priority masters (priority 0). If multiple masters of the same priority level
+attempt to access the same slave simultaneously, a round-robin tie break is applied, i.e. the arbiter grants access to each
+master in turn.
+
+Each peripheral register block is allocated 4kB of address space, with registers accessed using one of 4 methods,
+ selected by address decode.
+ • Addr + 0x0000 : normal read write access
+ • Addr + 0x1000 : atomic XOR on write
+ • Addr + 0x2000 : atomic bitmask set on write
+ • Addr + 0x3000 : atomic bitmask clear on write
+
+ Memory-mapped IO registers on RP2040 ignore the width of bus read/write accesses. They treat all writes as though they
+ were 32 bits in size. This means software can not use byte or halfword writes to modify part of an IO register: any write to
+ an address where the 30 address MSBs match the register address will affect the contents of the entire register
+
+ To update part of an IO register, without a read-modify-write sequence, the best solution on RP2040 is atomic
+set/clear/XOR 
+
